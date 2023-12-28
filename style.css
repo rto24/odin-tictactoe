@@ -1,0 +1,22 @@
+* {
+  margin: 0;
+  padding: 0;
+}
+
+.game-container {
+  display: grid;
+  grid-template-columns: repeat(3, 150px);
+  grid-template-rows: repeat(3, 150px);
+  justify-content: center;
+  
+}
+
+.grid-select {
+  display: flex;
+  justify-content: center;
+}
+
+.grid-select > button {
+  height: 150px;
+  width: 150px;
+}
