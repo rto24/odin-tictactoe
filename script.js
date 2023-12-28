@@ -46,6 +46,7 @@ const gameBoard = (() => {
   const board = [];
   let winner = null;
   let turns = 0;
+  let winningCombo = [];
 
   const playerGroup = (name, marker, turn) => {
     return { name, marker, turn };
@@ -97,13 +98,28 @@ const playerTurn = (() => {
 
 const checkWinner = () => {
   turns++;
-
+  // Adds player1 and player2 moves into separate arrays
   let playX = board.reduce((total, current, i) =>
   (current === player1.marker) ? total.concat(i) : total, []);
   let playO = board.reduce((total, current, i) => 
   (current === player2.marker) ? total.concat(i) : total, []);
 
-  })
-}
+  // Loop through winCombo
+  for (let [index, value] of winCombo.entries()) {
+    // Evaluates a match with player moves and winning combo
+    if (value.every(e => playX.indexOf(e) > -1)) {
+      gameBoard.winner = 'player1';
+      gameBoard.winningCombo = value;
 
+    } else if (value.every(e => playO.indexOf(e) > -1)) {
+      gameBoard.winner = 'player2';
+      gameBoard.winningCombo = value;
+
+    } else if (gameBoard.winner == null && gameBoard.winner == undefined && turns == 9) {
+      gameBoard.winner = 'tie';
+      gameBoard.winningCombo = value;
+    }
+  };
+  }
+  return { player1, player2, playerTurn, board, checkWinner, winningCombo };
 })();
