@@ -92,7 +92,18 @@ const playerTurn = (() => {
       };
     });
   });
+  return { box }
 })();
 
+const checkWinner = () => {
+  turns++;
+
+  let playX = board.reduce((total, current, i) =>
+  (current === player1.marker) ? total.concat(i) : total, []);
+  let playO = board.reduce((total, current, i) => 
+  (current === player2.marker) ? total.concat(i) : total, []);
+
+  })
+}
 
 })();
