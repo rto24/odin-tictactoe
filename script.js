@@ -15,9 +15,22 @@ function Gameboard() {
   const placeCharacter = (column, player) => {
     const openCells = board.filter((row) =>
     row[column].getValue() === 0).map(row => row[column]);
+    if (!openCells.length) return;
+    const openRow = openCells.length;
+    board[openRow][column].placeItem(player);
   }
 }
 
 function Cell() {
+  let value = 0;
+  const placeItem = (player) => {
+    value = player;
+  };
 
+  const getValue = () => value;
+
+  return {
+    placeItem,
+    getValue
+  };
 }
