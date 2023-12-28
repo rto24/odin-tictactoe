@@ -70,12 +70,20 @@ const playerTurn = (() => {
   const box = document.querySelectorAll('.box');
   box.forEach(box => {
     box.addEventListener('click', event => {
+      // X Player1 move conditions
       if (player1.turn == true && event.target.textContent == ''
       && gameBoard.winner == null) {
         board[event.target.id] = player1.marker;
-        box.textContet = player1.marker;
+        box.textContent = player1.marker;
         player1.turn = false;
         player2.turn = true;
+      // O Player 2 move conditions
+      } else if (player2.turn == true && event.target.textContent == ''
+      && gameBoard.winner == null) {
+        board[event.target.id] = player2.marker;
+        box.textContent = player2.marker; 
+        player1.turn = true;
+        player2.turn = false;
       }
     })
   })
