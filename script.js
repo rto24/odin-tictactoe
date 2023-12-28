@@ -18,7 +18,14 @@ function Gameboard() {
     if (!openCells.length) return;
     const openRow = openCells.length;
     board[openRow][column].placeItem(player);
-  }
+  };
+
+  const printBoard = () => {
+    const getBoardCellValues = board.map((row) => row.map((cell) =>
+    cell.getValue()))
+    console.log(getBoardCellValues);
+  };
+  return { retrieveBoard, placeCharacter, printBoard };
 }
 
 function Cell() {
