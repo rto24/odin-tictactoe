@@ -45,6 +45,7 @@
 const gameBoard = (() => {
   const board = [];
   let winner = null;
+  let turns = 0;
 
   const playerGroup = (name, marker, turn) => {
     return { name, marker, turn };
@@ -70,6 +71,7 @@ const playerTurn = (() => {
   const box = document.querySelectorAll('.box');
   box.forEach(box => {
     box.addEventListener('click', event => {
+
       // X Player1 move conditions
       if (player1.turn == true && event.target.textContent == ''
       && gameBoard.winner == null) {
@@ -77,6 +79,7 @@ const playerTurn = (() => {
         box.textContent = player1.marker;
         player1.turn = false;
         player2.turn = true;
+
       // O Player 2 move conditions
       } else if (player2.turn == true && event.target.textContent == ''
       && gameBoard.winner == null) {
@@ -84,9 +87,12 @@ const playerTurn = (() => {
         box.textContent = player2.marker; 
         player1.turn = true;
         player2.turn = false;
-      }
-    })
-  })
-})
+      } else {
+        return;
+      };
+    });
+  });
+})();
+
 
 })();
