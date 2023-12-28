@@ -9,6 +9,13 @@ function Gameboard() {
       board[i].push(Cell());
     }
   }
+
+  const retrieveBoard = () => board;
+
+  const placeCharacter = (column, player) => {
+    const openCells = board.filter((row) =>
+    row[column].getValue() === 0).map(row => row[column]);
+  }
 }
 
 function Cell() {
