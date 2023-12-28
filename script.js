@@ -44,9 +44,10 @@
 
 const gameBoard = (() => {
   const board = [];
+  let winner = null;
 
   const playerGroup = (name, marker, turn) => {
-    return { name, marker, turn};
+    return { name, marker, turn };
   };
 // Players
   const player1 = playerGroup('player 1', 'X', true);
@@ -63,5 +64,21 @@ const winCombo = [
   [2,5,8],
   [0,4,8]
 ];
+
+// Player move
+const playerTurn = (() => {
+  const box = document.querySelectorAll('.box');
+  box.forEach(box => {
+    box.addEventListener('click', event => {
+      if (player1.turn == true && event.target.textContent == ''
+      && gameBoard.winner == null) {
+        board[event.target.id] = player1.marker;
+        box.textContet = player1.marker;
+        player1.turn = false;
+        player2.turn = true;
+      }
+    })
+  })
+})
 
 })();
