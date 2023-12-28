@@ -44,7 +44,6 @@
 
 const gameBoard = (() => {
   const board = [];
-  let winner = null;
   let turns = 0;
   let winningCombo = [];
 
@@ -67,36 +66,39 @@ const winCombo = [
   [0,4,8]
 ];
 
+let winner = null;
+
 // Player move
 const playerTurn = (() => {
   const box = document.querySelectorAll('.box');
   box.forEach(box => {
-    box.addEventListener('click', event => {
+    box.addEventListener('click', e => {
 
       // X Player1 move conditions
-      if (player1.turn == true && event.target.textContent == ''
+      if (player1.turn == true && e.target.textContent == ''
       && gameBoard.winner == null) {
-        board[event.target.id] = player1.marker;
+        board[e.target.id] = player1.marker;
         box.textContent = player1.marker;
         player1.turn = false;
         player2.turn = true;
 
       // O Player 2 move conditions
-      } else if (player2.turn == true && event.target.textContent == ''
+      } else if (player2.turn == true && e.target.textContent == ''
       && gameBoard.winner == null) {
-        board[event.target.id] = player2.marker;
+        board[e.target.id] = player2.marker;
         box.textContent = player2.marker; 
         player1.turn = true;
         player2.turn = false;
       } else {
         return;
       };
+      checkWinner();
     });
   });
   return { box }
 })();
 
-const checkWinner = () => {
+checkWinner = () => {
   turns++;
   // Adds player1 and player2 moves into separate arrays
   let playX = board.reduce((total, current, i) =>
@@ -107,19 +109,37 @@ const checkWinner = () => {
   // Loop through winCombo
   for (let [index, value] of winCombo.entries()) {
     // Evaluates a match with player moves and winning combo
-    if (value.every(e => playX.indexOf(e) > -1)) {
+    if (value.every(elem => playX.indexOf(elem) > -1)) {
       gameBoard.winner = 'player1';
       gameBoard.winningCombo = value;
 
-    } else if (value.every(e => playO.indexOf(e) > -1)) {
+    } else if (value.every(elem => playO.indexOf(elem) > -1)) {
       gameBoard.winner = 'player2';
       gameBoard.winningCombo = value;
 
-    } else if (gameBoard.winner == null && gameBoard.winner == undefined && turns == 9) {
+    } else if (gameBoard.winner == null && turns == 9) {
       gameBoard.winner = 'tie';
       gameBoard.winningCombo = value;
     }
   };
+  displayWinner();
   }
   return { player1, player2, playerTurn, board, checkWinner, winningCombo };
 })();
+
+const display = (() => {
+  const winText = document.querySelector('.winner');
+  // Display winner
+  displayWinner = () => {
+  if (gameBoard.winner === 'player1') {
+    winText.textContent = 'Player 1 Wins!';
+    console.log(winText.textContent)
+  } else if (gameBoard.winner === 'player2') {
+    winText.textContent = 'Player 2 Wins!';
+  } else {
+    return;
+  }
+  }
+  return { displayWinner };
+})();
+
