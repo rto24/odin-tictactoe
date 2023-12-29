@@ -82,6 +82,7 @@ checkWinner = () => {
   restartGameDisplay();
   };
 
+  // Resets game to default
   clearGame = () => {
     gameBoard.winner = null;
     player1.turn = true;
@@ -94,11 +95,15 @@ checkWinner = () => {
 })();
 
 const display = (() => {
+  // DOM
   const box = document.querySelectorAll('.box');
   const winText = document.querySelector('.winner');
   const restartCtn = document.querySelector('.restart');
   const restartBtn = document.createElement('button');
   restartBtn.classList.add('restart-btn');
+  const pOneScore = document.querySelector('#p1-score');
+  const pTwoScore = document.querySelector('#p2-score');
+  // console.log(pOneScore, pTwoScore)
 
   // Display winner
   displayWinner = () => {
@@ -124,6 +129,7 @@ const display = (() => {
     }
   };
 
+  // Restarts the game
   replayGame = () => {
     gameBoard.clearGame();
     winText.textContent = '';
@@ -133,6 +139,7 @@ const display = (() => {
     restartCtn.removeChild(restartBtn);
   };
 
+  // Event listner
   restartBtn.addEventListener('click', replayGame);  
 
   return { displayWinner, restartGameDisplay, replayGame };
