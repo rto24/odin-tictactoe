@@ -33,8 +33,13 @@ body {
   border: none;
   cursor: pointer;
 }
-
+.header {
+  color: var(--text-color);
+  text-align: center;
+  padding-top: 20px;
+}
 .winner {
   color: var(--text-color);
   text-align: center;
+  padding-top: 20px;
 }
