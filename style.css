@@ -61,6 +61,12 @@ body {
   border: none;
   border-radius: 25px;
   cursor: pointer;
+  transition: all .3s ease-in-out;
+}
+
+.restart-btn:hover {
+  transform: scale(1.1);
+  box-shadow: 0 5px 15px #c4b5fd;
 }
 
 .box {
@@ -69,6 +75,7 @@ body {
 
 .box:hover {
   transform: scale(0.9);
+  box-shadow: 0 0 30px #c4b5fd;
 }
 
 .scoreboard {
