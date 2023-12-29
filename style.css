@@ -3,9 +3,10 @@
   --primary-color: #fde047;
   --text-color: #e5e7eb;
 }
-
+html,
 body {
   background-color: var(--background);
+  font-family:Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
 }
 
 * {
@@ -32,12 +33,16 @@ body {
   width: 150px;
   border: none;
   cursor: pointer;
+  font-size: 40px;
 }
+
 .header {
   color: var(--text-color);
   text-align: center;
   padding-top: 20px;
+  font-size: 50px;
 }
+
 .winner {
   color: var(--text-color);
   text-align: center;
