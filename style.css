@@ -95,3 +95,8 @@ table {
   box-shadow: 3px 3px 3px rgba(255, 255, 255, 0.4);
 }
 
+table tr:first-child th {
+  font-size: 30px;
+  font-style: italic;
+}
+
