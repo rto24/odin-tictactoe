@@ -103,15 +103,17 @@ const display = (() => {
     return;
   }
   };
-  
+
   // Display restart button after win or tie
   restartGameDisplay = () => {
     if (winText.textContent !== '') {
       restartCtn.appendChild(restartBtn);
+      restartBtn.textContent = 'Play Again';
     } else {
       return;
     }
   };
+
   return { displayWinner, restartGame };
 })();
 
