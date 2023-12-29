@@ -6,9 +6,10 @@ const gameBoard = (() => {
   const playerGroup = (name, marker, turn) => {
     return { name, marker, turn };
   };
+  
 // Players
-  const player1 = playerGroup('player 1', 'X', true);
-  const player2 = playerGroup('player 2', 'O', false);
+const player1 = playerGroup('player 1', 'X', true);
+const player2 = playerGroup('player 2', 'O', false);
 
 //Win Combinations
 const winCombo = [
@@ -78,7 +79,9 @@ checkWinner = () => {
       gameBoard.winningCombo = value;
     }
   };
+  updateScore();
   displayWinner();
+  updateScoreElements();
   restartGameDisplay();
   };
 
@@ -101,15 +104,11 @@ const display = (() => {
   const restartCtn = document.querySelector('.restart');
   const restartBtn = document.createElement('button');
   restartBtn.classList.add('restart-btn');
-  const pOneScore = document.querySelector('#p1-score');
-  const pTwoScore = document.querySelector('#p2-score');
-  // console.log(pOneScore, pTwoScore)
 
   // Display winner
   displayWinner = () => {
   if (gameBoard.winner === 'player1') {
     winText.textContent = 'Player 1 Wins!';
-    console.log(winText.textContent)
   } else if (gameBoard.winner === 'player2') {
     winText.textContent = 'Player 2 Wins!';
   } else if (gameBoard.winner === 'tie') {
@@ -129,6 +128,29 @@ const display = (() => {
     }
   };
 
+  //Score tracker
+  let score = {
+    pOneWins: 0,
+    pTwoWins: 0
+  };
+
+  //Updates score
+  updateScore = () => {
+    if (gameBoard.winner === 'player1') {
+      score.pOneWins++;
+    } else if (gameBoard.winner === 'player2') {
+        score.pTwoWins++;
+    } else {
+      return;
+    }
+  };
+
+  //Displays score
+  updateScoreElements = () => {
+    document.querySelector('#p1-score').innerHTML = score.pOneWins;
+    document.querySelector('#p2-score').innerHTML = score.pTwoWins;
+  };
+
   // Restarts the game
   replayGame = () => {
     gameBoard.clearGame();
@@ -142,6 +164,6 @@ const display = (() => {
   // Event listner
   restartBtn.addEventListener('click', replayGame);  
 
-  return { displayWinner, restartGameDisplay, replayGame };
+  return { displayWinner, restartGameDisplay, replayGame, updateScore, updateScoreElements };
 })();
 
