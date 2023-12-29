@@ -48,3 +48,18 @@ body {
   text-align: center;
   padding-top: 20px;
 }
+
+.restart {
+  display: flex;
+  justify-content: center;
+}
+
+.restart > button {
+  margin: 20px;
+  padding: 10px 20px 10px 20px;
+  font-weight: bold;
+  font-style: italic;
+  border: none;
+  border-radius: 25px;
+  cursor: pointer;
+}
