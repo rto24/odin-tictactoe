@@ -79,12 +79,17 @@ checkWinner = () => {
     }
   };
   displayWinner();
+  restartGameDisplay();
   }
   return { player1, player2, playerTurn, board, checkWinner, winningCombo };
 })();
 
 const display = (() => {
   const winText = document.querySelector('.winner');
+  const restartCtn = document.querySelector('.restart');
+  const restartBtn = document.createElement('button');
+  restartBtn.classList.add('restart-btn')
+
   // Display winner
   displayWinner = () => {
   if (gameBoard.winner === 'player1') {
@@ -97,7 +102,16 @@ const display = (() => {
   } else {
     return;
   }
-  }
-  return { displayWinner };
+  };
+  
+  // Display restart button after win or tie
+  restartGameDisplay = () => {
+    if (winText.textContent !== '') {
+      restartCtn.appendChild(restartBtn);
+    } else {
+      return;
+    }
+  };
+  return { displayWinner, restartGame };
 })();
 
