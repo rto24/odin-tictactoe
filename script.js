@@ -1,5 +1,5 @@
 const gameBoard = (() => {
-  const board = [];
+  let board = [];
   let turns = 0;
   let winningCombo = [];
 
@@ -80,15 +80,25 @@ checkWinner = () => {
   };
   displayWinner();
   restartGameDisplay();
-  }
-  return { player1, player2, playerTurn, board, checkWinner, winningCombo };
+  };
+
+  clearGame = () => {
+    gameBoard.winner = null;
+    player1.turn = true;
+    player2.turn = false; 
+    turns = 0;
+    board = [];
+  };
+ 
+  return { playerTurn, clearGame, board, checkWinner, winningCombo, clearGame };
 })();
 
 const display = (() => {
+  const box = document.querySelectorAll('.box');
   const winText = document.querySelector('.winner');
   const restartCtn = document.querySelector('.restart');
   const restartBtn = document.createElement('button');
-  restartBtn.classList.add('restart-btn')
+  restartBtn.classList.add('restart-btn');
 
   // Display winner
   displayWinner = () => {
@@ -114,6 +124,17 @@ const display = (() => {
     }
   };
 
-  return { displayWinner, restartGame };
+  replayGame = () => {
+    gameBoard.clearGame();
+    winText.textContent = '';
+    box.forEach(box => {
+      box.textContent = '';
+    })
+    restartCtn.removeChild(restartBtn);
+  };
+
+  restartBtn.addEventListener('click', replayGame);  
+
+  return { displayWinner, restartGameDisplay, replayGame };
 })();
 
