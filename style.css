@@ -1,6 +1,5 @@
 :root {
   --background: #020617;
-  --primary-color: #fde047;
   --text-color: #e5e7eb;
 }
 html,
@@ -54,7 +53,7 @@ body {
   justify-content: center;
 }
 
-.restart > button {
+.restart-btn {
   margin: 20px;
   padding: 10px 20px 10px 20px;
   font-weight: bold;
@@ -62,6 +61,14 @@ body {
   border: none;
   border-radius: 25px;
   cursor: pointer;
+}
+
+.box {
+  transition: all .3s ease-in-out;
+}
+
+.box:hover {
+  transform: scale(0.9);
 }
 
 .scoreboard {
