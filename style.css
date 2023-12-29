@@ -1,3 +1,13 @@
+:root {
+  --background: #020617;
+  --primary-color: #fde047;
+  --text-color: #e5e7eb;
+}
+
+body {
+  background-color: var(--background);
+}
+
 * {
   margin: 0;
   padding: 0;
@@ -8,7 +18,8 @@
   grid-template-columns: repeat(3, 150px);
   grid-template-rows: repeat(3, 150px);
   justify-content: center;
-  
+  gap: 5px;
+  padding-top: 80px;
 }
 
 .grid-select {
@@ -19,4 +30,11 @@
 .grid-select > button {
   height: 150px;
   width: 150px;
+  border: none;
+  cursor: pointer;
+}
+
+.winner {
+  color: var(--text-color);
+  text-align: center;
 }
