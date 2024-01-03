@@ -1,6 +1,7 @@
 :root {
   --background: #020617;
   --text-color: #e5e7eb;
+  --background-glow: #c4b5fd;
 }
 html,
 body {
@@ -66,7 +67,7 @@ body {
 
 .restart-btn:hover {
   transform: scale(1.1);
-  box-shadow: 0 5px 15px #c4b5fd;
+  box-shadow: 0 5px 15px var(--background-glow);
 }
 
 .box {
@@ -75,7 +76,7 @@ body {
 
 .box:hover {
   transform: scale(0.9);
-  box-shadow: 0 0 30px #c4b5fd;
+  box-shadow: 0 0 30px var(--background-glow);
 }
 
 .scoreboard {
