@@ -64,7 +64,7 @@ checkWinner = () => {
   (current === player2.marker) ? total.concat(i) : total, []);
 
   // Loop through winCombo
-  for (let [index, value] of winCombo.entries()) {
+    for (const value of winCombo) {
     // Evaluates a match with player moves and winning combo
     if (value.every(elem => playX.indexOf(elem) > -1)) {
       gameBoard.winner = 'player1';
