@@ -32,16 +32,16 @@ const playerTurn = (() => {
     box.addEventListener('click', e => {
 
       // X Player1 move conditions
-      if (player1.turn == true && e.target.textContent == ''
-      && gameBoard.winner == null) {
+      if (player1.turn === true && e.target.textContent === ''
+      && !gameBoard.winner) {
         board[e.target.id] = player1.marker;
         box.textContent = player1.marker;
         player1.turn = false;
         player2.turn = true;
 
       // O Player 2 move conditions
-      } else if (player2.turn == true && e.target.textContent == ''
-      && gameBoard.winner == null) {
+      } else if (player2.turn === true && e.target.textContent === ''
+      && !gameBoard.winner) {
         board[e.target.id] = player2.marker;
         box.textContent = player2.marker; 
         player1.turn = true;
